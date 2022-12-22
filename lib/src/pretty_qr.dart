@@ -9,7 +9,8 @@ import 'pretty_qr_painter.dart';
 
 class PrettyQr extends StatefulWidget {
   ///Widget size
-  final double size;
+  final double width;
+  final double height;
 
   ///Qr code data
   final String data;
@@ -30,7 +31,8 @@ class PrettyQr extends StatefulWidget {
 
   PrettyQr(
       {Key? key,
-      this.size = 100,
+      this.width = 100,
+      this.height = 100,
       required this.data,
       this.elementColor = Colors.black,
       this.errorCorrectLevel = QrErrorCorrectLevel.M,
@@ -63,7 +65,7 @@ class _PrettyQrState extends State<PrettyQr> {
   Widget build(BuildContext context) {
     return widget.image == null
         ? CustomPaint(
-            size: Size(widget.size, widget.size),
+            size: Size(widget.width, widget.height),
             painter: PrettyQrCodePainter(
                 data: widget.data,
                 errorCorrectLevel: widget.errorCorrectLevel,
@@ -77,7 +79,7 @@ class _PrettyQrState extends State<PrettyQr> {
               if (snapshot.hasData) {
                 return Container(
                   child: CustomPaint(
-                    size: Size(widget.size, widget.size),
+                    size: Size(widget.width, widget.height),
                     painter: PrettyQrCodePainter(
                         image: snapshot.data,
                         data: widget.data,
